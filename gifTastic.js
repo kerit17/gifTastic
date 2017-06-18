@@ -8,7 +8,7 @@ function renderButtons() {
     $("#tunes-view").empty();
    //Loop through array
     for (var i = 0; i < tunes.length; i++) {
-        //Generating buttons for each .
+        //Generating buttons for each
         var a = $("<button data-toon>");
         //Add a class
         a.addClass("looney");
@@ -39,11 +39,11 @@ function renderButtons() {
   renderButtons();
 
 //when looney button is clicked
-$("#tunes-view").on("click", function(){
-  $("#gifs-appear-here").empty();
-
+$(".looney").on("click", function(){
   //this - refers to button pressed
   var gifRequest = $(this).attr("data-toon");
+  $("#gifs-appear-here").empty();
+
 
   //API to specify tune to call with number of responses
   var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -68,11 +68,31 @@ $("#tunes-view").on("click", function(){
       var image = $("<img>");
       // var rating = results[i].rating;
       // var p = $("<p>").text("Rating: " + rating);
-      image.attr("src", results[i].images.fixed_height.url);
+      image.attr("src", results[i].images.fixed_height_still.url);
+      image.attr("data-still", results[i].images.fixed_height_still.url);
+      image.attr("data-animate", results[i].images.fixed_height.url);
+      image.attr("data-state", "still");
+      image.addClass("animation"); image.attr("src", results[i].images.fixed_height_still.url);
       gifDiv.prepend(image);
       // gifDiv.prepend(p);
       $("#gifs-appear-here").prepend(gifDiv);
     }
   })
+
+
+//animation
+$(document).on("click", ".animation", function(){
+  var state = $(this).attr("data-state");
+
+  if (state === "original_still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "original");
+  }
+  else {
+    $(this).attr("src", $(this).attr("data-still"));
+    $(this).attr("data-state", "original_still");
+  }
+
+});
 
 })

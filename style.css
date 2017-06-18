@@ -1,0 +1,37 @@
+* {
+	font-size: 24px;
+	font-family: 'Titan One', cursive;
+	font-weight: bolder;
+	margin-bottom: 70px;
+	color: white;
+}
+
+body {
+	background-image: url("circlesbackground.jpg");
+	background-repeat: repeat-y;
+}
+
+h1 {
+	color: white;
+	font-size: 75px;
+	font-family: 'Titan One', cursive;
+	font-weight: bolder;
+	margin-bottom: 55px;
+}
+
+#tunes-view {
+	color: navy;
+}
+
+#looney-input, #add-looney {
+	color: navy;
+}
+
+#add-looney {
+	color: navy;
+	margin-left: 150px;
+}
+
+p {
+	font-size: 30px;
+}

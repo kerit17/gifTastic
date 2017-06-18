@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 //Initial array
   var tunes = ["Bugs Bunny", "Daffy Duck", "Porky Pig", "Sylvester"];
   console.log(tunes);
@@ -26,9 +28,9 @@ function renderButtons() {
       //Default action of the event will not be triggered
       event.preventDefault();
       //Grab text from input box
-      var looney = $("#looney-input").val().trim();
+      var input = $("#looney-input").val().trim();
       //Add user input to the array
-      tunes.push(looney);
+      tunes.push(input);
         //console log array to show updated
         console.log(tunes);
       //Call renderButtons function that displays buttons for the array contents
@@ -43,7 +45,6 @@ $(".looney").on("click", function(){
   //this - refers to button pressed
   var gifRequest = $(this).attr("data-toon");
   $("#gifs-appear-here").empty();
-
 
   //API to specify tune to call with number of responses
   var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -64,18 +65,20 @@ $(".looney").on("click", function(){
     var results = response.data;
     //loop through results to pull specific data from each object
     for (var i=0; i < results.length; i++) {
-      var gifDiv = $("<div class='item'>");
+      var gifDiv = $("<div>");
+     
+      var p = $("<p>").text("Rating: " + results[i].rating);
+     
       var image = $("<img>");
-      // var rating = results[i].rating;
-      // var p = $("<p>").text("Rating: " + rating);
       image.attr("src", results[i].images.fixed_height_still.url);
       image.attr("data-still", results[i].images.fixed_height_still.url);
       image.attr("data-animate", results[i].images.fixed_height.url);
       image.attr("data-state", "still");
       image.addClass("animation"); image.attr("src", results[i].images.fixed_height_still.url);
-      gifDiv.prepend(image);
+      gifDiv.append(p);
+      gifDiv.append(image);
       // gifDiv.prepend(p);
-      $("#gifs-appear-here").prepend(gifDiv);
+      $("#gifs-appear-here").append(gifDiv);
     }
   })
 
@@ -95,4 +98,5 @@ $(document).on("click", ".animation", function(){
 
 });
 
+})
 })

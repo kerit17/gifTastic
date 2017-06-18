@@ -9,12 +9,12 @@ function renderButtons() {
    //Loop through array
     for (var i = 0; i < tunes.length; i++) {
         //Generating buttons for each .
-        var a = $("<button>");
+        var a = $("<button data-toon>");
         //Add a class
         a.addClass("looney");
-        //Add a data-attribute with a value of the movie at index i
-        a.attr("data-name", tunes[i]);
-        //Button's text with a value of the movie at index i
+        //Add a data-attribute 
+        a.attr("data-toon", tunes[i]);
+        //Button's text 
         a.text(tunes[i]);
         //Add button to HTML
         $("#tunes-view").append(a);
@@ -43,10 +43,10 @@ $("#tunes-view").on("click", function(){
   $("#gifs-appear-here").empty();
 
   //this - refers to button pressed
-  var gifRequest = $(this).attr("data-name");
+  var gifRequest = $(this).attr("data-toon");
 
   //API to specify tune to call with number of responses
-  var queryURL = "http://api.giphy.com/v1/gifs/search?q=Bugs+Bunny&api_key=dc6zaTOxFJmzC&limit=10";
+  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=10";
   //console log URL used
   console.log(queryURL);
 

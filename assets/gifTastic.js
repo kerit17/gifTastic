@@ -47,7 +47,7 @@ $(".looney").on("click", function(){
   $("#gifs-appear-here").empty();
 
   //API to specify tune to call with number of responses
-  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=10";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=10";
   //console log URL used
   console.log(queryURL);
 
